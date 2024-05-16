@@ -1,0 +1,82 @@
+<div class="card">
+    <div class="card-header bg-warning text-white" >
+        <strong>Student Details</strong>
+        <button type="button" class="btn btn-primary btn-sm" style="float: right;" (click)="onAddStudent()">Add Student</button>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of studentArr">
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.department}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-info btn-sm" (click)="onEdit(item)">Edit</button>&nbsp;
+                            <button type="button" class="btn btn-secondary btn-sm" (click)="onDelete(item.studentId)">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal-->
+
+<div class="modal" id="studentmodel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--modal header-->
+            <div class="modal-header bg-success text-white">
+                <h6 class="modal-title">Add Student Details</h6>
+                <button type="button" class="btn-close btn-sm text-white" (click)="onCloseModal()"></button>
+            </div>
+            <form #userForm="ngForm">
+                <!--model body-->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <label class="for-label">Name</label>
+                            <input type="text" name="name" class="form-control" [(ngModel)]="student.name" placeholder="Name"  />
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <label class="for-label">Email</label>
+                            <input type="text" name="email" class="form-control" [(ngModel)]="student.email" placeholder="Email"/>
+                        </div>
+                    </div><br>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <label class="for-label">Department</label>
+                                <input type="text" name="department" class="form-control" [(ngModel)]="student.department" placeholder="Department"/>
+                            </div>
+                            </div>
+                </div>
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <button class="btn btn-secondary btn-sm ">Cancel</button>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <button class="btn btn-success btn-sm " (click)="saveStudent(userForm)" *ngIf="student.studentId ==0">Save</button>
+                            <button class="btn btn-success btn-sm " (click)="onUpdate()" *ngIf="student.studentId !==0">Update</button>
+                        </div>
+                
+                    </div>
+                </div><br>
+            </form>
+        </div>
+    </div>
+</div>
